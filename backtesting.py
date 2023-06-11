@@ -12,6 +12,7 @@ class Backtester:
         self.frequency_of_trades = frequency_of_trades
         self.symbol_list = symbol_list
         self.data = {}
+        self.trades = []
     
     def import_stock_data(self):
         # A dictionary to store the historical stock data
@@ -47,20 +48,31 @@ class Backtester:
 
         return 'HOLD'
 
-    # Executes trades
-    def trades():
-        pass
+    def execute_trade(self, symbol, action, price, quantity):
+        trade = {'Symbol': symbol, 'Action': action, 'Price': price, 'Quantity': quantity}
+        self.trades.append(trade)
 
+    def trades(self):
+        # Placeholder method for executing trades based on the strategy
+        for symbol in self.symbol_list:
+            current_price = self.data[symbol].iloc[-1]['Close']
+            action = self.strategy()
 
-    # Runs everything
-    def run():
-        pass
+            if action == 'BUY':
+                quantity = int(self.initial_capital / (2 * current_price))
+                self.execute_trade(symbol, 'BUY', current_price, quantity)
+            elif action == 'SELL':
+                quantity = int(self.initial_capital / (2 * current_price))
+                self.execute_trade(symbol, 'SELL', current_price, quantity)
 
-        
+    def run(self):
+        self.import_stock_data()
+        self.trades()
+        return self.trades
 
-bt = Backtester(start_date='2022-01-01', end_date='2022-12-31', initial_capital=100000, frequency_of_trades=10, symbol_list=['AAPL', 'MSFT'])
+fun = Backtester(start_date='2022-01-01', end_date='2022-12-31', initial_capital=100000, frequency_of_trades=10, symbol_list=['AAPL', 'MSFT'])
 
-stock_data = bt.import_stock_data()
+trades = fun.run()
 
-print(stock_data)
-    
+for trade in trades:
+    print(trade)
