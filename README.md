@@ -30,9 +30,9 @@ yfinance library
 Make sure to install the yfinance library before running the backtester:
 
 Copy code
-pip install yfinance
-Disclaimer
+ - pip install yfinance
+# Disclaimer
 The Backtester is a tool for educational and informational purposes only. It does not guarantee any specific investment results or profits. Use it at your own risk.
 
-License
+# License
 This project is licensed under the MIT License.
